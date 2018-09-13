@@ -67,7 +67,7 @@ class GmGateway extends Gateway
 
         $requestParams['sign'] = $this->generateSign($signParams, $this->config->get('api_key'));
 
-        $contents = $this->get($this->getEndpoint('post/gaorder.asp'), $requestParams);
+        $contents = $this->get('post/gaorder.asp', $requestParams);
 
         $contents = $this->unwrapResponseContents($contents);
 
@@ -99,7 +99,7 @@ class GmGateway extends Gateway
 
         $requestParams['sign'] = $this->generateSign($requestParams, $this->config->get('api_key'));
 
-        $contents = $this->get($this->getEndpoint('post/gasearch.asp'), $requestParams);
+        $contents = $this->get('post/gasearch.asp', $requestParams);
 
         $contents = $this->unwrapResponseContents($contents);
 
@@ -111,18 +111,15 @@ class GmGateway extends Gateway
     }
 
     /**
-     * Get endpoint
-     *
-     * @param $path
      * @return string
      */
-    protected function getEndpoint($path)
+    protected function getBaseUri()
     {
-        if ($this->config->get('mode') == 'dev') {
-            return self::TEST_ENDPOINT_URL . '/' . ltrim($path, '/');
+        if ($this->config->get('mode') === 'dev') {
+            return self::TEST_ENDPOINT_URL;
         }
 
-        return self::ENDPOINT_URL . '/' . ltrim($path, '/');
+        return self::ENDPOINT_URL;
     }
 
     /**

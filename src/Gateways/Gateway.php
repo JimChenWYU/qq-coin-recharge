@@ -86,4 +86,9 @@ abstract class Gateway implements GatewayInterface
     {
         return \strtolower(str_replace([__NAMESPACE__.'\\', 'Gateway'], '', \get_class($this)));
     }
+
+    /**
+     * @return string
+     */
+    abstract protected function getBaseUri();
 }

@@ -1,11 +1,11 @@
-# gmqcoin
+# QQ Coin Recharge
 
-¹ÚÃûQ±Ò³äÖµAPI
+Qå¸å……å€¼SDK
 
 ## Installing
 
 ```shell
-$ composer require jimchen/gmqcoin -vvv
+$ composer require jimchen/qq-coin-recharge -vvv
 ```
 
 ## Usage

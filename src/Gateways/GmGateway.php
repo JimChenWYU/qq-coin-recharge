@@ -12,6 +12,7 @@ namespace JimChen\Recharge\Gateways;
 
 use JimChen\Recharge\Exceptions\GatewayErrorException;
 use JimChen\Recharge\Exceptions\InvalidArgumentException;
+use JimChen\Recharge\Support\Collection;
 use JimChen\Recharge\Traits\HasHttpRequest;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,7 +47,7 @@ class GmGateway extends Gateway
      *
      * @param array $payload
      *
-     * @return array
+     * @return Collection
      *
      * @throws GatewayErrorException
      * @throws InvalidArgumentException
@@ -75,7 +76,7 @@ class GmGateway extends Gateway
             throw new GatewayErrorException($contents['info']['ret_msg'], $contents['info']['ret']);
         }
 
-        return $contents['gaorder'];
+        return new Collection($contents['gaorder']);
     }
 
     /**
@@ -83,7 +84,7 @@ class GmGateway extends Gateway
      *
      * @param $order
      *
-     * @return array
+     * @return Collection
      *
      * @throws GatewayErrorException
      * @throws InvalidArgumentException
@@ -107,7 +108,7 @@ class GmGateway extends Gateway
             throw new GatewayErrorException($contents['info']['ret_msg'], $contents['info']['ret']);
         }
 
-        return $contents['gasearch'];
+        return new Collection($contents['gasearch']);
     }
 
     /**

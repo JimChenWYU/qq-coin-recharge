@@ -15,4 +15,6 @@ interface GatewayInterface
     public function recharge(array $config_biz);
 
     public function find($order);
+
+    public function verify(array $params);
 }

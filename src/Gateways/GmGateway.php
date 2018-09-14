@@ -112,6 +112,23 @@ class GmGateway extends Gateway
     }
 
     /**
+     * Verify signature
+     *
+     * @param array $params
+     * @return bool
+     * @throws InvalidArgumentException
+     */
+    public function verify(array $params)
+    {
+        $sign = $params['sign'];
+        unset($params['sign'], $params['money']);
+
+        $generateSign = $this->generateSign($params, $this->config->get('api_key'));
+
+        return $sign === $generateSign;
+    }
+    
+    /**
      * @return string
      */
     protected function getBaseUri()

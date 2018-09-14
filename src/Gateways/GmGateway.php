@@ -36,7 +36,7 @@ class GmGateway extends Gateway
 
         $this->payload = [
             'username' => $this->config->get('username'),
-            'gameapi'  => 'ypesqb',
+            'gameapi'  => $this->config->get('gameapi', 'ypesqb'),
             'clientip' => $this->config->get('clientip', Request::createFromGlobals()->getClientIp()),
             'returl'   => $this->config->get('returl'),
         ];

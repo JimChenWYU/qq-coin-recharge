@@ -17,7 +17,7 @@ use JimChen\Recharge\Support\Str;
 /**
  * @method static GatewayInterface gm(array $config = array())
  */
-class QQCoinRecharge
+class Recharge
 {
     protected $config;
 

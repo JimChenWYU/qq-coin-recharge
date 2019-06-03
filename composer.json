@@ -1,12 +1,12 @@
 {
     "name": "jimchen/qq-coin-recharge",
-    "description": "Gm QQ coin recharge.",
+    "description": "QQ coin recharge gateway.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "JimChen",
-            "email": "18219111672@163.com"
+            "email": "imjimchen@163.com"
         }
     ],
     "autoload": {

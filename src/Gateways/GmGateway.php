@@ -120,6 +120,10 @@ class GmGateway extends Gateway
      */
     public function verify(array $params)
     {
+        if (! isset($params['sign'])) {
+            return false;
+        }
+
         $sign = $params['sign'];
         unset($params['sign'], $params['money']);
 

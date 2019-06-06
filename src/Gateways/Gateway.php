@@ -81,6 +81,10 @@ abstract class Gateway implements GatewayInterface
 
     /**
      * {@inheritdoc}
+     *
+     * 注意：当 Gateway 命名空间不在 JimChen\Recharge\Gateways 时需要复写该方法
+     *
+     * @return string
      */
     public function getName()
     {

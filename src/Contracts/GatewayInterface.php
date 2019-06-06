@@ -12,7 +12,7 @@ namespace JimChen\Recharge\Contracts;
 
 use JimChen\Recharge\Support\Collection;
 
-interface GatewayInterface
+interface GatewayInterface extends ConfigInterface
 {
     /**
      * @param array $config_biz
@@ -31,4 +31,9 @@ interface GatewayInterface
      * @return bool
      */
     public function verify(array $params);
+
+    /**
+     * @return string
+     */
+    public function getName();
 }

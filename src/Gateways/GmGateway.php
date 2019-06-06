@@ -12,6 +12,7 @@ namespace JimChen\Recharge\Gateways;
 
 use JimChen\Recharge\Exceptions\GatewayErrorException;
 use JimChen\Recharge\Exceptions\InvalidArgumentException;
+use JimChen\Recharge\Support\Arr;
 use JimChen\Recharge\Support\Collection;
 use JimChen\Recharge\Traits\HasHttpRequest;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +41,10 @@ class GmGateway extends Gateway
             'clientip' => $this->config->get('clientip', Request::createFromGlobals()->getClientIp()),
             'returl'   => $this->config->get('returl'),
         ];
+
+        if (empty($this->payload['username'])) {
+            throw new InvalidArgumentException("Missing Gm Config -- [username]");
+        }
     }
 
     /**
@@ -54,11 +59,15 @@ class GmGateway extends Gateway
      */
     public function recharge(array $payload)
     {
-        $requestParams = array_merge($this->payload, [
+        $requestParams = [
+            'username'  => $this->payload['username'],
+            'gameapi'   => Arr::get($payload, 'gameapi', $this->payload['gameapi']),
+            'clientip'  => Arr::get($payload, 'clientip', $this->payload['clientip']),
+            'returl'    => Arr::get($payload, 'returl', $this->payload['returl']),
             'account'   => $payload['account'],
             'buynum'    => $payload['buynum'],
             'sporderid' => $payload['sporderid'],
-        ]);
+        ];
 
         $signParams = [
             'username'  => $requestParams['username'],

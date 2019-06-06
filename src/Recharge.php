@@ -17,6 +17,7 @@ use JimChen\Recharge\Support\Str;
 /**
  * @method static GatewayInterface gm(array $config = array())
  * @method static GatewayInterface jisu(array $config = array())
+ * @method static GatewayInterface fulu(array $config = array())
  */
 class Recharge
 {

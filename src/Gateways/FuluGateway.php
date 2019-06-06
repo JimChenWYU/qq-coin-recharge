@@ -107,8 +107,6 @@ class FuluGateway extends Gateway
     public function find($order)
     {
         $requestParams = array_merge($this->publicRequestParams($order), [
-            'ProductId'       => Arr::get($order, 'typeid', $this->payload['typeid']),
-            'BuyerIP'         => Arr::get($order, 'clientip', $this->payload['clientip']),
             'CustomerOrderNo' => Arr::get($order, 'sporderid', is_string($order) ? $order : ''),
         ]);
         $requestParams['Sign'] = $this->generateSign($requestParams, $this->payload['appsecret']);

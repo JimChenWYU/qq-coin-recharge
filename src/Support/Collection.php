@@ -413,4 +413,29 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     {
         $this->set($offset, $value);
     }
+
+    /**
+     * Sort through each item with a callback.
+     *
+     * @param  callable|null  $callback
+     * @return static
+     */
+    public function sort(callable $callback = null)
+    {
+        $items = $this->items;
+        $callback
+            ? uasort($items, $callback)
+            : asort($items);
+        return new static($items);
+    }
+
+    /**
+     * Get a copy.
+     *
+     * @return Collection
+     */
+    public function copy()
+    {
+        return new static($this->items);
+    }
 }
